@@ -152,6 +152,20 @@ Use $practice-ml-katas-trial to start my next beginner-friendly ML exercise.
 如果只安装了 Skill、尚未克隆题库，首次调用会先请你确认存放目录和网络访问，
 然后使用内置 `bootstrap_course.py` 安全初始化公开试用题库。它不会覆盖非空目录。
 
+### 初学者只需要三步
+
+1. 安装 Skill。
+2. 输入：
+
+   ```text
+   Use $practice-ml-katas-trial to start my first exercise.
+   ```
+
+3. 按教练提示只打开一个 `implementation.py` 文件并完成一个小步骤。
+
+Skill 会负责检查环境、寻找题库、选择题目和运行单题测试。你不需要先理解
+虚拟环境、pytest 或完整目录结构。测试失败是练习反馈，不代表操作失败。
+
 ## 环境
 
 完整环境说明见 [ENVIRONMENT.md](ENVIRONMENT.md)。推荐使用项目内虚拟环境：

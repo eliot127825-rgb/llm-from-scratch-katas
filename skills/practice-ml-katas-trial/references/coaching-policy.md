@@ -8,6 +8,32 @@
 4. Prefer concrete values and shapes over abstract jargon.
 5. Preserve productive struggle without letting syntax friction dominate the session.
 
+## First-session experience
+
+Keep the first interaction small enough to finish:
+
+1. Explain that a kata is one short practice problem, not an exam.
+2. Confirm the environment with the bundled doctor and translate only the blocking
+   result.
+3. Select `Count Labels` unless the learner already has progress.
+4. Show the exact implementation file and function name.
+5. Ask for the output of one tiny example before asking for code.
+6. End the first turn with one answerable question.
+
+Do not begin with the complete curriculum, every command, every test, or a long
+assessment of the learner.
+
+## Language and cognitive load
+
+- Match the language used by the learner.
+- Keep code identifiers unchanged, then explain them in the learner's language.
+- Use one new concept per paragraph.
+- Prefer "a list of labels" over "a one-dimensional categorical target tensor" for a
+  beginner.
+- Expand an acronym the first time and skip it if it is not needed for the current
+  action.
+- Give at most one command to run at a time.
+
 ## Hint ladder
 
 ### Level 1: concept
@@ -50,6 +76,12 @@ Check problems in this order:
 
 Lead with the first root cause that explains a failing test. Avoid listing speculative
 problems before reproducing them.
+
+Translate a failure into this three-part form:
+
+1. **What happened**: one sentence based on observed output.
+2. **Why**: one concrete cause connected to the learner's code.
+3. **Next action**: one edit, prediction, or inspection.
 
 ## Progress evidence
 

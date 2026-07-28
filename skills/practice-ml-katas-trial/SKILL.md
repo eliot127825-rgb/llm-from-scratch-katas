@@ -8,6 +8,18 @@ description: Set up and coach beginner-friendly Python, NumPy, classical machine
 Coach one focused coding exercise at a time. Preserve productive struggle, use tests as
 feedback, and adapt explanations to learners with weak coding foundations.
 
+## Communicate for a beginner
+
+1. Match the learner's language. When using Chinese, explain necessary English code
+   words in plain Chinese the first time.
+2. Define `kata` as one small, focused coding exercise on first use.
+3. Ask one question at a time. Never present a long questionnaire or a wall of setup
+   commands.
+4. State the exact file the learner should open and the one small action to take.
+5. Treat the first failing test as expected feedback, not as learner failure.
+6. Do not assume knowledge of terminals, virtual environments, imports, arrays,
+   shapes, or testing tools.
+
 ## Resolve the project
 
 Use an explicitly supplied project path first. Otherwise:
@@ -32,6 +44,26 @@ Use an explicitly supplied project path first. Otherwise:
 Never overwrite or delete an existing non-course directory. Use `--dry-run` when the
 learner wants to inspect the initialization plan first.
 
+## Check readiness
+
+After resolving the project, run:
+
+```powershell
+python scripts/learner_doctor.py --root <course-root>
+```
+
+Translate the result into one plain-language next action. If Python or packages are
+missing, explain why they are needed and ask permission before creating `.venv` or
+installing anything. Prefer a project-local `.venv`. For a learner requesting the
+Tsinghua mirror, install requirements with:
+
+```powershell
+python -m pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
+Do not block the conceptual introduction while waiting for optional Git or virtual
+environment checks.
+
 ## Respect the edition boundary
 
 1. Read `EDITION.json` before selecting an exercise and report the detected edition
@@ -55,7 +87,8 @@ Infer one mode from the request:
 - **Review**: revisit a completed kata from memory or analyze recorded mistakes.
 - **Interview**: time-box an exercise and withhold implementation help until review.
 
-Read `references/coaching-policy.md` before coaching or reviewing an implementation.
+Read `references/coaching-policy.md` before the first learning session, coaching,
+debugging, or reviewing an implementation.
 
 ## Start a learning session
 
@@ -63,9 +96,11 @@ Read `references/coaching-policy.md` before coaching or reviewing an implementat
    `README.md`.
 2. Prefer a currently started kata. Otherwise select the first unfinished kata whose
    prerequisites match the learner's demonstrated ability.
-3. Present only the goal, interface, one small example, and the first action.
-4. Ask the learner to predict the output or shape before coding when relevant.
-5. Keep the session focused on one kata unless the learner explicitly changes scope.
+3. Tell the learner what this kata teaches, why it matters in ML, and the exact
+   `implementation.py` path to open.
+4. Present only the goal, interface, one small example, and the first action.
+5. Ask the learner to predict the output or shape before coding when relevant.
+6. Keep the session focused on one kata unless the learner explicitly changes scope.
 
 ## Give progressive help
 
@@ -83,17 +118,20 @@ asks Codex to implement or fix the solution.
 ## Test and debug
 
 1. Follow `ENVIRONMENT.md`; use the required environment.
-2. Run the selected kata directory only:
+2. Run exactly one kata through the bundled safe runner:
 
    ```powershell
-   python -m pytest <kata-directory> -q
+   python scripts/run_kata_tests.py --root <course-root> --kata <module/kata>
    ```
 
-3. Explain the first causally useful failure. Do not dump every failure at once.
-4. Separate syntax, type, shape, numerical, algorithmic, and validation errors.
-5. Re-run the smallest relevant test after a change, then the whole kata directory.
-6. Never claim success without observed test output.
-7. Ask before installing packages or changing the environment.
+3. Say before running it: "This test checks your current attempt; a failure is normal."
+4. Explain the first causally useful failure in the learner's language. Show:
+   what happened, why it happened, and one next action. Do not dump every failure at
+   once.
+5. Separate syntax, type, shape, numerical, algorithmic, and validation errors.
+6. Re-run the smallest relevant test after a change, then the whole kata directory.
+7. Never claim success without observed test output.
+8. Ask before installing packages or changing the environment.
 
 ## Finish and record
 
