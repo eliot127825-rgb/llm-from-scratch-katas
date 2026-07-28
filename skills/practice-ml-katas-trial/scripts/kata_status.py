@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 
 
@@ -25,11 +26,21 @@ def find_project_root(explicit: str | None = None) -> Path:
     if explicit:
         candidates.append(Path(explicit).expanduser())
 
+    configured_home = os.environ.get("ML_KATAS_HOME")
+    if configured_home:
+        candidates.append(Path(configured_home).expanduser())
+
     current = Path.cwd().resolve()
     candidates.extend((current, *current.parents))
 
     skill_file = Path(__file__).resolve()
     candidates.extend(skill_file.parents)
+    candidates.extend(
+        (
+            Path.home() / "ml-katas-trial",
+            Path.home() / "llm-from-scratch-katas_V1",
+        )
+    )
 
     seen: set[Path] = set()
     for candidate in candidates:
@@ -41,8 +52,8 @@ def find_project_root(explicit: str | None = None) -> Path:
             return resolved
 
     raise FileNotFoundError(
-        "Could not find a project containing CATALOG.md, PROGRESS.md, "
-        "ENVIRONMENT.md, and katas/. Pass --root explicitly."
+        "Could not find the Trial Edition course. Pass --root, set "
+        "ML_KATAS_HOME, or initialize a checkout with bootstrap_course.py."
     )
 
 

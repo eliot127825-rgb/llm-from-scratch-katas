@@ -124,6 +124,9 @@ def validate_repository(root: Path) -> list[str]:
     for python_file in sorted((root / "templates").rglob("*.py")):
         errors.extend(validate_python(python_file))
 
+    for python_file in sorted((root / "skills").rglob("*.py")):
+        errors.extend(validate_python(python_file))
+
     return errors
 
 

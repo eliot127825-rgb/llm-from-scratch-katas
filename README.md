@@ -125,8 +125,17 @@ python -m pytest katas/01_python_dsa/001_count_labels -q
 skills/practice-ml-katas-trial/
 ```
 
-它可以在当前公开题库中选择下一题、提供分级提示、运行当前题测试、引导复盘并维护学习进度。
-克隆仓库后可复制到个人 Codex skills 目录：
+它可以初始化或发现本地题库、选择下一题、提供分级提示、运行当前题测试、
+引导复盘并维护学习进度。
+
+推荐直接让 Codex 从 GitHub 子目录安装：
+
+```text
+Install the skill from:
+https://github.com/eliot127825-rgb/llm-from-scratch-katas_V1/tree/main/skills/practice-ml-katas-trial
+```
+
+已经克隆仓库时，也可以手动复制到个人 Codex skills 目录：
 
 ```powershell
 Copy-Item -Recurse `
@@ -139,6 +148,9 @@ Copy-Item -Recurse `
 ```text
 Use $practice-ml-katas-trial to start my next beginner-friendly ML exercise.
 ```
+
+如果只安装了 Skill、尚未克隆题库，首次调用会先请你确认存放目录和网络访问，
+然后使用内置 `bootstrap_course.py` 安全初始化公开试用题库。它不会覆盖非空目录。
 
 ## 环境
 
