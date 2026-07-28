@@ -1,7 +1,10 @@
-# Kata Catalog
+# Trial Edition Kata Catalog
 
 题目按依赖顺序排列。`Published` 表示题面、实现桩、测试和复盘模板均已具备，
 不代表学习者已经完成实现。
+
+本目录只列出当前试用版实际提供的 19 道题。付费完整版的规划与内容不会存放在
+本公开仓库中；版本边界见 [EDITIONS.md](EDITIONS.md)。
 
 ## 01 Python and Data Handling
 

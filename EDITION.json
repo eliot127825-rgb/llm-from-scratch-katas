@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "product": "Machine Learning Foundations: From-Scratch Katas",
+  "edition": "trial",
+  "display_name": "Trial Edition",
+  "distribution": "public",
+  "repository": "eliot127825-rgb/llm-from-scratch-katas_V1",
+  "companion_repository": "eliot127825-rgb/llm-from-scratch-katas_V2",
+  "kata_count": 19
+}

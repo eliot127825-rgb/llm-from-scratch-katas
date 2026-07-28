@@ -1,0 +1,4 @@
+interface:
+  display_name: "ML Kata Coach (Trial)"
+  short_description: "Beginner-friendly trial ML coding coach"
+  default_prompt: "Use $practice-ml-katas-trial to start my next exercise from the public Trial Edition."

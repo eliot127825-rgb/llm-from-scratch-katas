@@ -7,7 +7,13 @@ import json
 from pathlib import Path
 
 
-MARKERS = ("CATALOG.md", "PROGRESS.md", "ENVIRONMENT.md", "katas")
+MARKERS = (
+    "EDITION.json",
+    "CATALOG.md",
+    "PROGRESS.md",
+    "ENVIRONMENT.md",
+    "katas",
+)
 
 
 def is_project_root(path: Path) -> bool:
@@ -45,6 +51,12 @@ def implementation_status(path: Path) -> str:
     if "raise NotImplementedError" in source:
         return "not_started"
     return "started"
+
+
+def read_edition(root: Path) -> dict[str, object]:
+    edition_path = root / "EDITION.json"
+    with edition_path.open(encoding="utf-8") as file:
+        return json.load(file)
 
 
 def collect_katas(root: Path) -> list[dict[str, str]]:
@@ -90,12 +102,14 @@ def main() -> int:
 
     rows = collect_katas(root)
     recommendation = recommend(rows)
+    edition = read_edition(root)
 
     if args.json:
         print(
             json.dumps(
                 {
                     "root": str(root),
+                    "edition": edition,
                     "katas": rows,
                     "recommended": recommendation,
                 },
@@ -106,6 +120,10 @@ def main() -> int:
         return 0
 
     print(f"Project: {root}")
+    print(
+        f"Edition: {edition['display_name']} "
+        f"({edition['edition']}, {edition['distribution']})"
+    )
     for row in rows:
         marker = "*" if row is recommendation else " "
         print(

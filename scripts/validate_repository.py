@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import ast
+import json
 import re
 import sys
 from pathlib import Path
@@ -16,6 +17,8 @@ REQUIRED_FILES = {
 }
 REQUIRED_ROOT_FILES = {
     "README.md",
+    "EDITION.json",
+    "EDITIONS.md",
     "CATALOG.md",
     "ROADMAP.md",
     "PROGRESS.md",
@@ -94,6 +97,29 @@ def validate_repository(root: Path) -> list[str]:
 
     if kata_count == 0:
         errors.append("No kata directories found")
+
+    edition_path = root / "EDITION.json"
+    if edition_path.is_file():
+        try:
+            edition = json.loads(edition_path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, json.JSONDecodeError) as error:
+            errors.append(f"{edition_path}: {error}")
+        else:
+            if edition.get("schema_version") != 1:
+                errors.append(f"{edition_path}: schema_version must be 1")
+            if edition.get("edition") not in {"trial", "complete"}:
+                errors.append(
+                    f"{edition_path}: edition must be 'trial' or 'complete'"
+                )
+            if edition.get("distribution") not in {"public", "private"}:
+                errors.append(
+                    f"{edition_path}: distribution must be 'public' or 'private'"
+                )
+            if edition.get("kata_count") != kata_count:
+                errors.append(
+                    f"{edition_path}: kata_count is {edition.get('kata_count')}, "
+                    f"but found {kata_count}"
+                )
 
     for python_file in sorted((root / "templates").rglob("*.py")):
         errors.extend(validate_python(python_file))

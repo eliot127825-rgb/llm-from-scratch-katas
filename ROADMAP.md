@@ -5,6 +5,9 @@
 当前已发布的题目与前置依赖见 [CATALOG.md](CATALOG.md)。当前题库包含
 19 道题，从 Python 数据处理逐步延伸到经典机器学习、神经网络和 LLM。
 
+本文件描述整体能力方向，不代表所有阶段内容都已包含在试用版中。当前可用内容
+以 `CATALOG.md` 为准；两个版本的边界见 [EDITIONS.md](EDITIONS.md)。
+
 ## Phase 1：Python 与数据处理
 
 对应目录：`katas/01_python_dsa`

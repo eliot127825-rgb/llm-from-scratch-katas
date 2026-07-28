@@ -1,6 +1,10 @@
-# Machine Learning Foundations: From-Scratch Katas
+# Machine Learning Foundations: From-Scratch Katas — Trial Edition
 
 一个面向**代码基础薄弱学习者**的渐进式机器学习代码训练项目。
+
+> 当前公开仓库是 **Trial Edition（试用版）**，包含 19 道练习和基础 Codex
+> 教练 Skill。付费 **Complete Edition（完整版）** 将在独立私有仓库中维护，
+> 不会通过本仓库的分支发布。
 
 目标不是背诵库函数，而是沿着一条平缓的路径建立真正可迁移的能力：
 
@@ -11,6 +15,15 @@
 5. 在掌握经典算法后继续学习神经网络与 LLM。
 
 每道练习只聚焦一个概念，通常可在 20–60 分钟内完成。
+
+## 两个版本
+
+- **Trial Edition**：当前公开仓库，帮助学习者免费体验训练方式。
+- **Complete Edition**：计划中的付费完整版，提供扩展题库、参考实现、系统讲解、
+  综合项目和增强版教练 Skill。
+
+详细边界和当前发布状态见 [EDITIONS.md](EDITIONS.md)。根目录的
+[`EDITION.json`](EDITION.json) 用于让工具和 Skill 识别当前版本。
 
 ## 学习路径
 
@@ -28,6 +41,8 @@ Python 基础
 ```text
 llm-from-scratch-katas/
 ├── README.md
+├── EDITION.json
+├── EDITIONS.md
 ├── CATALOG.md
 ├── ROADMAP.md
 ├── PROGRESS.md
@@ -51,9 +66,9 @@ llm-from-scratch-katas/
 └── tests/
 ```
 
-## 已发布题目
+## 试用版已发布题目
 
-当前包含 **19 道带自动测试的 kata**：
+Trial Edition 当前包含 **19 道带自动测试的 kata**：
 
 - Python 与数据处理：3 道
 - Tensor Operations：5 道
@@ -104,25 +119,25 @@ python -m pytest katas/01_python_dsa/001_count_labels -q
 
 ## Codex Skill
 
-仓库内置 `practice-ml-katas` 教练 Skill：
+试用版内置 `practice-ml-katas-trial` 教练 Skill：
 
 ```text
-skills/practice-ml-katas/
+skills/practice-ml-katas-trial/
 ```
 
-它可以选择下一题、提供分级提示、运行当前题测试、引导复盘并维护学习进度。
+它可以在当前公开题库中选择下一题、提供分级提示、运行当前题测试、引导复盘并维护学习进度。
 克隆仓库后可复制到个人 Codex skills 目录：
 
 ```powershell
 Copy-Item -Recurse `
-  .\skills\practice-ml-katas `
-  "$env:USERPROFILE\.codex\skills\practice-ml-katas"
+  .\skills\practice-ml-katas-trial `
+  "$env:USERPROFILE\.codex\skills\practice-ml-katas-trial"
 ```
 
 使用示例：
 
 ```text
-Use $practice-ml-katas to start my next beginner-friendly ML exercise.
+Use $practice-ml-katas-trial to start my next beginner-friendly ML exercise.
 ```
 
 ## 环境

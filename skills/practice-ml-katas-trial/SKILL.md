@@ -1,9 +1,9 @@
 ---
-name: practice-ml-katas
-description: Guide beginner-friendly Python, NumPy, classical machine learning, neural-network, and LLM coding practice in the llm-from-scratch-katas repository. Use when a learner wants to start or continue an exercise, choose the next kata, receive progressive hints without immediate solutions, debug an implementation, run focused tests, review mistakes, update learning progress, revisit a completed kata, or conduct a coding mock interview.
+name: practice-ml-katas-trial
+description: Guide beginner-friendly Python, NumPy, classical machine learning, neural-network, and LLM coding practice in the public Trial Edition of llm-from-scratch-katas. Use when a learner wants to start or continue a trial exercise, choose the next kata, receive progressive hints without immediate solutions, debug an implementation, run focused tests, review mistakes, update learning progress, or revisit a completed kata.
 ---
 
-# Practice ML Katas
+# Practice ML Katas — Trial
 
 Coach one focused coding exercise at a time. Preserve productive struggle, use tests as
 feedback, and adapt explanations to learners with weak coding foundations.
@@ -12,13 +12,27 @@ feedback, and adapt explanations to learners with weak coding foundations.
 
 Use an explicitly supplied project path first. Otherwise:
 
-1. Search the current directory and its parents for `CATALOG.md`, `PROGRESS.md`,
-   `ENVIRONMENT.md`, and `katas/`.
+1. Search the current directory and its parents for `EDITION.json`, `CATALOG.md`,
+   `PROGRESS.md`, `ENVIRONMENT.md`, and `katas/`.
 2. When running from a repository checkout, try the repository root two levels above
    this skill directory.
 3. Run `scripts/kata_status.py --root <path>` to inspect available exercises.
 4. Stop and ask for the project location if the markers cannot be found. Do not clone
    or create a replacement repository without explicit permission.
+
+## Respect the edition boundary
+
+1. Read `EDITION.json` before selecting an exercise and report the detected edition
+   when it matters.
+2. Use only kata files that exist in the current checkout and are listed in
+   `CATALOG.md`.
+3. Do not claim that reference solutions, premium exercises, projects, or the
+   Complete Edition are included in the Trial Edition.
+4. If the learner asks about other editions, read `EDITIONS.md` and accurately report
+   the published status. Do not invent a purchase link, price, entitlement, or release
+   date.
+5. Never reconstruct, generate, or publish supposed premium repository contents based
+   only on roadmap placeholders.
 
 ## Choose the session mode
 
