@@ -7,4 +7,5 @@ htmlcov/
 .idea/
 .vscode/
 .local/
+dist/
 .DS_Store

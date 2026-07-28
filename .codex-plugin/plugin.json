@@ -1,0 +1,38 @@
+{
+  "name": "llm-from-scratch-katas",
+  "version": "0.1.0",
+  "description": "Adaptive beginner coaching for from-scratch machine learning coding katas.",
+  "author": {
+    "name": "eliot127825-rgb",
+    "email": "eliot127825@gmail.com",
+    "url": "https://github.com/eliot127825-rgb"
+  },
+  "homepage": "https://github.com/eliot127825-rgb/llm-from-scratch-katas_V1",
+  "repository": "https://github.com/eliot127825-rgb/llm-from-scratch-katas_V1.git",
+  "keywords": [
+    "machine-learning",
+    "python",
+    "coding-katas",
+    "beginner",
+    "adaptive-learning"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "ML From-Scratch Katas",
+    "shortDescription": "Adaptive ML coding coach",
+    "longDescription": "A beginner-friendly coach for the public Trial Edition of ML From-Scratch Katas. It checks readiness, offers a five-question ability assessment, assigns an appropriate support level, selects suitable exercises, gives progressive hints, runs one kata safely, and guides reflection without exposing paid-edition content.",
+    "developerName": "eliot127825-rgb",
+    "category": "Education & Research",
+    "capabilities": [
+      "Assess beginner coding ability",
+      "Recommend level-appropriate ML exercises",
+      "Provide progressive hints and explanations",
+      "Run focused kata tests and explain failures"
+    ],
+    "defaultPrompt": [
+      "Assess my level and start a suitable ML kata.",
+      "Continue my current ML coding exercise.",
+      "Help me understand my first failing kata test."
+    ]
+  }
+}

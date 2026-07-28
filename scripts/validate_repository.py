@@ -16,6 +16,7 @@ REQUIRED_FILES = {
     "mistakes.md",
 }
 REQUIRED_ROOT_FILES = {
+    ".codex-plugin",
     "README.md",
     "EDITION.json",
     "EDITIONS.md",
@@ -44,9 +45,8 @@ def validate_repository(root: Path) -> list[str]:
     if not katas_root.is_dir():
         return [f"Missing kata root: {katas_root}"]
 
-    missing_root_files = REQUIRED_ROOT_FILES.difference(
-        path.name for path in root.iterdir() if path.is_file()
-    )
+    root_entries = {path.name for path in root.iterdir()}
+    missing_root_files = REQUIRED_ROOT_FILES.difference(root_entries)
     if missing_root_files:
         errors.append(
             f"{root}: missing {', '.join(sorted(missing_root_files))}"
@@ -120,6 +120,24 @@ def validate_repository(root: Path) -> list[str]:
                     f"{edition_path}: kata_count is {edition.get('kata_count')}, "
                     f"but found {kata_count}"
                 )
+
+    plugin_path = root / ".codex-plugin" / "plugin.json"
+    if not plugin_path.is_file():
+        errors.append(f"Missing plugin manifest: {plugin_path}")
+    else:
+        try:
+            plugin = json.loads(plugin_path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, json.JSONDecodeError) as error:
+            errors.append(f"{plugin_path}: {error}")
+        else:
+            if plugin.get("name") != "llm-from-scratch-katas":
+                errors.append(
+                    f"{plugin_path}: name must be 'llm-from-scratch-katas'"
+                )
+            if plugin.get("skills") != "./skills/":
+                errors.append(f"{plugin_path}: skills must be './skills/'")
+            if not isinstance(plugin.get("version"), str):
+                errors.append(f"{plugin_path}: version must be a string")
 
     for python_file in sorted((root / "templates").rglob("*.py")):
         errors.extend(validate_python(python_file))

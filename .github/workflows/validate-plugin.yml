@@ -1,0 +1,39 @@
+name: Validate and package
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate repository structure and syntax
+        run: python scripts/validate_repository.py
+
+      - name: Build skills-only plugin
+        run: python scripts/build_plugin.py
+
+      - name: Test plugin archive
+        run: python -m zipfile --test dist/*.zip
+
+      - name: Upload plugin artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: llm-from-scratch-katas-plugin
+          path: dist/*.zip
+          if-no-files-found: error

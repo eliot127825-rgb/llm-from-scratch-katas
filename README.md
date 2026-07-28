@@ -117,9 +117,10 @@ python -m pytest katas/01_python_dsa/001_count_labels -q
 卡住时先缩小问题：打印中间变量、手算一个最小例子、检查 shape。不要立即复制
 完整答案。
 
-## Codex Skill
+## Codex Plugin 与 Skill
 
-试用版内置 `practice-ml-katas-trial` 教练 Skill：
+试用版已经包装成一个 **skills-only Codex Plugin**，插件清单位于
+`.codex-plugin/plugin.json`，内置 `practice-ml-katas-trial` 教练 Skill：
 
 ```text
 skills/practice-ml-katas-trial/
@@ -128,22 +129,33 @@ skills/practice-ml-katas-trial/
 它可以初始化或发现本地题库、选择下一题、提供分级提示、运行当前题测试、
 引导复盘并维护学习进度。
 
-推荐直接让 Codex 从 GitHub 子目录安装：
+初学者推荐直接在 Codex 中输入：
 
 ```text
-Install the skill from:
+Use $skill-installer to install the skill from:
 https://github.com/eliot127825-rgb/llm-from-scratch-katas_V1/tree/main/skills/practice-ml-katas-trial
 ```
 
-已经克隆仓库时，也可以手动复制到个人 Codex skills 目录：
+安装后新建一个对话，再输入：
 
-```powershell
-Copy-Item -Recurse `
-  .\skills\practice-ml-katas-trial `
-  "$env:USERPROFILE\.codex\skills\practice-ml-katas-trial"
+```text
+Use $practice-ml-katas-trial to assess my level and start my first exercise.
 ```
 
-使用示例：
+已经克隆仓库时，也可以手动复制到当前 Codex 的个人 Skill 发现目录：
+
+```powershell
+$skillHome = Join-Path $env:USERPROFILE ".agents\skills"
+New-Item -ItemType Directory -Force -Path $skillHome
+Copy-Item -Recurse `
+  .\skills\practice-ml-katas-trial `
+  (Join-Path $skillHome "practice-ml-katas-trial")
+```
+
+完整的安装、插件构建和发布前检查见 [PLUGIN.md](PLUGIN.md)。维护者可以运行
+`python scripts/build_plugin.py`，生成不含题库和本地学习数据的干净 Plugin ZIP。
+
+其他使用示例：
 
 ```text
 Use $practice-ml-katas-trial to start my next beginner-friendly ML exercise.
@@ -190,7 +202,8 @@ Skill 会负责检查环境、寻找题库、选择题目和运行单题测试�
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
+python -m pip install -r requirements.txt `
+  -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 如果已经使用 Conda，也可以创建或激活自己的 Python 3.10+ 环境：
@@ -203,7 +216,8 @@ conda activate ml-katas
 建议使用 Python 3.10 或更高版本。基础阶段只需要 NumPy 和 pytest：
 
 ```powershell
-python -m pip install -r requirements.txt
+python -m pip install -r requirements.txt `
+  -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 运行当前练习的测试：
