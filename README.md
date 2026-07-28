@@ -166,6 +166,23 @@ Use $practice-ml-katas-trial to start my next beginner-friendly ML exercise.
 Skill 会负责检查环境、寻找题库、选择题目和运行单题测试。你不需要先理解
 虚拟环境、pytest 或完整目录结构。测试失败是练习反馈，不代表操作失败。
 
+### 自适应能力诊断
+
+首次开始时，Skill 会提供一个可跳过的5题短诊断，测试：
+
+- Python 循环和字典
+- 基础调试
+- 矩阵 shape
+- 训练集与测试集概念
+- 把问题拆成算法步骤
+
+诊断后分为 Starter、Foundation、Guided、Independent 四个支持等级，并据此调整
+题目难度、提示速度和讲解细节。等级不是考试排名，学习者始终可以选择更简单或
+更困难的题。
+
+诊断只把维度分数和教学偏好保存在本地 `.local/learner_profile.json`。原始答案
+不会保存，`.local/` 也不会进入 Git 提交。
+
 ## 环境
 
 完整环境说明见 [ENVIRONMENT.md](ENVIRONMENT.md)。推荐使用项目内虚拟环境：

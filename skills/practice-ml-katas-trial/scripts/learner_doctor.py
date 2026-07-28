@@ -9,7 +9,13 @@ import shutil
 import sys
 from pathlib import Path
 
-from kata_status import collect_katas, find_project_root, read_edition, recommend
+from kata_status import (
+    collect_katas,
+    find_project_root,
+    load_learner_profile,
+    read_edition,
+    recommend,
+)
 
 
 REQUIRED_PACKAGES = ("numpy", "pytest")
@@ -90,7 +96,8 @@ def inspect_environment(explicit_root: str | None = None) -> dict[str, object]:
             }
         )
         rows = collect_katas(root)
-        next_kata = recommend(rows)
+        profile = load_learner_profile(root)
+        next_kata = recommend(rows, profile)
 
     blocking = [
         check["name"]
@@ -119,6 +126,8 @@ def inspect_environment(explicit_root: str | None = None) -> dict[str, object]:
         "edition": edition,
         "kata_count": len(rows),
         "recommended": next_kata,
+        "learner_profile": profile if root else None,
+        "diagnostic_recommended": bool(root and profile is None),
         "checks": checks,
         "blocking": blocking,
         "next_action": next_action,

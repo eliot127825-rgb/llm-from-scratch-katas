@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 from pathlib import Path
 
 
@@ -14,6 +15,10 @@ MARKERS = (
     "PROGRESS.md",
     "ENVIRONMENT.md",
     "katas",
+)
+CATALOG_ROW = re.compile(
+    r"\|\s*\d+\s*\|\s*\[[^\]]+\]\((katas/[^)]+/README\.md)\)"
+    r"\s*\|\s*(Beginner|Easy|Medium|Hard)\s*\|"
 )
 
 
@@ -70,8 +75,31 @@ def read_edition(root: Path) -> dict[str, object]:
         return json.load(file)
 
 
+def read_difficulties(root: Path) -> dict[str, str]:
+    catalog = (root / "CATALOG.md").read_text(encoding="utf-8")
+    difficulties: dict[str, str] = {}
+    for match in CATALOG_ROW.finditer(catalog):
+        kata_path = Path(match.group(1)).parent
+        difficulties[str(kata_path)] = match.group(2)
+    return difficulties
+
+
+def load_learner_profile(root: Path) -> dict[str, object] | None:
+    source = root / ".local" / "learner_profile.json"
+    if not source.is_file():
+        return None
+    try:
+        profile = json.loads(source.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError):
+        return None
+    if profile.get("schema_version") != 1:
+        return None
+    return profile
+
+
 def collect_katas(root: Path) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
+    difficulties = read_difficulties(root)
     for module in sorted((root / "katas").iterdir()):
         if not module.is_dir():
             continue
@@ -85,15 +113,34 @@ def collect_katas(root: Path) -> list[dict[str, str]]:
                     "kata": kata.name,
                     "status": implementation_status(implementation),
                     "path": str(kata.relative_to(root)),
+                    "difficulty": difficulties.get(
+                        str(kata.relative_to(root)),
+                        "Unknown",
+                    ),
                 }
             )
     return rows
 
 
-def recommend(rows: list[dict[str, str]]) -> dict[str, str] | None:
+def recommend(
+    rows: list[dict[str, str]],
+    profile: dict[str, object] | None = None,
+) -> dict[str, str] | None:
     for row in rows:
         if row["status"] == "started":
             return row
+
+    if profile:
+        preferred = profile.get("preferred_difficulties", [])
+        if isinstance(preferred, list):
+            for difficulty in preferred:
+                for row in rows:
+                    if (
+                        row["status"] == "not_started"
+                        and row["difficulty"] == difficulty
+                    ):
+                        return row
+
     for row in rows:
         if row["status"] == "not_started":
             return row
@@ -112,7 +159,8 @@ def main() -> int:
         parser.error(str(error))
 
     rows = collect_katas(root)
-    recommendation = recommend(rows)
+    profile = load_learner_profile(root)
+    recommendation = recommend(rows, profile)
     edition = read_edition(root)
 
     if args.json:
@@ -121,6 +169,8 @@ def main() -> int:
                 {
                     "root": str(root),
                     "edition": edition,
+                    "learner_profile": profile,
+                    "diagnostic_recommended": profile is None,
                     "katas": rows,
                     "recommended": recommendation,
                 },
@@ -135,10 +185,18 @@ def main() -> int:
         f"Edition: {edition['display_name']} "
         f"({edition['edition']}, {edition['distribution']})"
     )
+    if profile:
+        print(
+            f"Learner level: {profile['label']} "
+            f"({profile['score']}/{profile['max_score']})"
+        )
+    else:
+        print("Learner level: not assessed")
     for row in rows:
         marker = "*" if row is recommendation else " "
         print(
-            f"{marker} {row['module']}/{row['kata']}: {row['status']}"
+            f"{marker} {row['module']}/{row['kata']}: "
+            f"{row['status']} ({row['difficulty']})"
         )
     if recommendation:
         print(f"Recommended: {recommendation['path']}")

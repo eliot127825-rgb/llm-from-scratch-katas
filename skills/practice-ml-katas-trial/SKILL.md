@@ -1,6 +1,6 @@
 ---
 name: practice-ml-katas-trial
-description: Set up and coach beginner-friendly Python, NumPy, classical machine learning, neural-network, and LLM coding practice with the public Trial Edition of llm-from-scratch-katas. Use when a learner wants to initialize the trial course, start or continue an exercise, choose the next kata, receive progressive hints without immediate solutions, debug an implementation, run focused tests, review mistakes, update learning progress, or revisit a completed kata.
+description: Set up, assess, and adaptively coach beginner-friendly Python, NumPy, classical machine learning, neural-network, and LLM coding practice with the public Trial Edition of llm-from-scratch-katas. Use when a learner wants to initialize the trial course, assess coding ability, receive a learner level, start or continue an appropriately difficult exercise, get level-adjusted explanations and progressive hints, debug an implementation, run focused tests, review mistakes, update learning progress, or revisit a completed kata.
 ---
 
 # Practice ML Katas — Trial
@@ -64,6 +64,43 @@ python -m pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/s
 Do not block the conceptual introduction while waiting for optional Git or virtual
 environment checks.
 
+## Diagnose and adapt
+
+After the course is ready, inspect the `learner_profile` and
+`diagnostic_recommended` fields from `scripts/kata_status.py --json`.
+
+When no profile exists:
+
+1. Explain that the optional five-question check takes about five minutes and adjusts
+   difficulty and explanation detail.
+2. Ask whether to take it or start at Starter level. Ask only this one question.
+3. If accepted, read `references/diagnostic.md` and administer one question at a time.
+4. Score only after all five answers. Explain strengths, support needs, and the
+   starting level without judgment.
+5. Save dimension scores with `scripts/learner_profile.py save`. Tell the learner the
+   local ignored path and that raw answers are not stored.
+6. Re-run `scripts/kata_status.py --root <course-root> --json` and use its adaptive
+   recommendation.
+
+The diagnostic is conversational and needs no NumPy, pytest, code execution, or file
+editing. Do not delay it because learning dependencies are missing; handle those before
+the first kata test instead.
+
+Adapt coaching to the saved level:
+
+- **Starter**: use Beginner katas, define every term, show concrete values, and give
+  one action at a time.
+- **Foundation**: use Beginner/Easy katas, trace loops and values, and explain syntax
+  briefly.
+- **Guided**: use Easy/Medium katas, ask for pseudocode, shapes, and edge cases before
+  hints.
+- **Independent**: use Medium katas, present concise challenges, withhold initial
+  hints, and review complexity and tradeoffs.
+
+Always allow the learner to request an easier or harder exercise. Resume an already
+started kata before assigning a new one. Offer reassessment after five completed katas
+or on request; never downgrade based on one difficult session.
+
 ## Respect the edition boundary
 
 1. Read `EDITION.json` before selecting an exercise and report the detected edition
@@ -94,8 +131,8 @@ debugging, or reviewing an implementation.
 
 1. Read `ENVIRONMENT.md`, `CATALOG.md`, `PROGRESS.md`, and the selected kata
    `README.md`.
-2. Prefer a currently started kata. Otherwise select the first unfinished kata whose
-   prerequisites match the learner's demonstrated ability.
+2. Prefer a currently started kata. Otherwise use the adaptive recommendation from
+   `kata_status.py`, checking that its prerequisites fit observed ability.
 3. Tell the learner what this kata teaches, why it matters in ML, and the exact
    `implementation.py` path to open.
 4. Present only the goal, interface, one small example, and the first action.

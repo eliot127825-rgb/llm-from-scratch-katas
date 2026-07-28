@@ -8,7 +8,12 @@ import subprocess
 import sys
 from pathlib import Path
 
-from kata_status import collect_katas, find_project_root, recommend
+from kata_status import (
+    collect_katas,
+    find_project_root,
+    load_learner_profile,
+    recommend,
+)
 
 
 def choose_python(root: Path) -> Path:
@@ -31,7 +36,10 @@ def resolve_kata(root: Path, requested: str | None) -> Path:
             relative = Path(*relative.parts[1:])
         target = (katas_root / relative).resolve()
     else:
-        selected = recommend(collect_katas(root))
+        selected = recommend(
+            collect_katas(root),
+            load_learner_profile(root),
+        )
         if selected is None:
             raise ValueError("No unfinished or started kata was found")
         target = (root / selected["path"]).resolve()
