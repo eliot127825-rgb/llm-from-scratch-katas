@@ -7,7 +7,7 @@
 skills/practice-ml-katas-trial/
 ```
 
-安装插件或 Skill 不会包含付费完整版内容，也不会打包学习者本地的
+安装插件或 Skill 不会包含尚未发布的下一版本内容，也不会打包学习者本地的
 `.local/learner_profile.json`。
 
 ## 初学者：从 GitHub 直接安装 Skill

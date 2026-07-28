@@ -107,13 +107,13 @@ or on request; never downgrade based on one difficult session.
    when it matters.
 2. Use only kata files that exist in the current checkout and are listed in
    `CATALOG.md`.
-3. Do not claim that reference solutions, premium exercises, projects, or the
-   Complete Edition are included in the Trial Edition.
+3. Do not claim that unreleased next-version exercises, projects, or learning
+   materials are included in the Trial Edition.
 4. If the learner asks about other editions, read `EDITIONS.md` and accurately report
    the published status. Do not invent a purchase link, price, entitlement, or release
    date.
-5. Never reconstruct, generate, or publish supposed premium repository contents based
-   only on roadmap placeholders.
+5. Never reconstruct, generate, or publish supposed next-version contents based only
+   on roadmap placeholders.
 
 ## Choose the session mode
 

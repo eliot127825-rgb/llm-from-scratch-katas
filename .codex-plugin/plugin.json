@@ -20,7 +20,7 @@
   "interface": {
     "displayName": "ML From-Scratch Katas",
     "shortDescription": "Adaptive ML coding coach",
-    "longDescription": "A beginner-friendly coach for the public Trial Edition of ML From-Scratch Katas. It checks readiness, offers a five-question ability assessment, assigns an appropriate support level, selects suitable exercises, gives progressive hints, runs one kata safely, and guides reflection without exposing paid-edition content.",
+    "longDescription": "A beginner-friendly coach for the public Trial Edition of ML From-Scratch Katas. It checks readiness, offers a five-question ability assessment, assigns an appropriate support level, selects suitable exercises, gives progressive hints, runs one kata safely, and guides reflection while respecting version boundaries.",
     "developerName": "eliot127825-rgb",
     "category": "Education & Research",
     "capabilities": [
