@@ -1,6 +1,6 @@
 ---
-name: practice-ml-katas-trial
-description: Set up, assess, and adaptively coach beginner-friendly Python, NumPy, classical machine learning, neural-network, and LLM coding practice with the public Trial Edition of llm-from-scratch-katas. Use when a learner wants to initialize the trial course, assess coding ability, receive a learner level, start or continue an appropriately difficult exercise, get level-adjusted explanations and progressive hints, debug an implementation, run focused tests, review mistakes, update learning progress, or revisit a completed kata.
+name: adaptive-ml-coach
+description: Set up, assess, and adaptively coach beginner-friendly Python, NumPy, classical machine learning, neural-network, and LLM coding practice with the public Trial Edition of Adaptive ML Code Gym. Use when a learner wants to initialize the trial course, assess coding ability, receive a learner level, start or continue an appropriately difficult exercise, get level-adjusted explanations and progressive hints, debug an implementation, run focused tests, review mistakes, update learning progress, or revisit a completed kata.
 ---
 
 # Practice ML Katas — Trial
@@ -25,9 +25,9 @@ feedback, and adapt explanations to learners with weak coding foundations.
 Use an explicitly supplied project path first. Otherwise:
 
 1. Run `scripts/kata_status.py --root <path>` when the learner supplied a path.
-2. Otherwise run `scripts/kata_status.py` to search `ML_KATAS_HOME`, the current
-   directory and parents, the repository containing this skill, and standard
-   user-directory names.
+2. Otherwise run `scripts/kata_status.py` to search `ADAPTIVE_ML_GYM_HOME`, the
+   backward-compatible `ML_KATAS_HOME`, the current directory and parents, the
+   repository containing this skill, and standard user-directory names.
 3. If no course is found, explain that the installed Skill and the learner's writable
    course checkout are separate.
 4. Ask the learner to confirm a destination directory and permission to access the

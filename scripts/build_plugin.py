@@ -15,7 +15,7 @@ import zipfile
 from pathlib import Path
 
 
-PLUGIN_NAME = "llm-from-scratch-katas"
+PLUGIN_NAME = "adaptive-ml-code-gym"
 EXCLUDED_PARTS = {"__pycache__", ".pytest_cache"}
 EXCLUDED_SUFFIXES = {".pyc", ".pyo"}
 

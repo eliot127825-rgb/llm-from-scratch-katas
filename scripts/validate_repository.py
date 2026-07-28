@@ -130,9 +130,9 @@ def validate_repository(root: Path) -> list[str]:
         except (OSError, UnicodeError, json.JSONDecodeError) as error:
             errors.append(f"{plugin_path}: {error}")
         else:
-            if plugin.get("name") != "llm-from-scratch-katas":
+            if plugin.get("name") != "adaptive-ml-code-gym":
                 errors.append(
-                    f"{plugin_path}: name must be 'llm-from-scratch-katas'"
+                    f"{plugin_path}: name must be 'adaptive-ml-code-gym'"
                 )
             if plugin.get("skills") != "./skills/":
                 errors.append(f"{plugin_path}: skills must be './skills/'")

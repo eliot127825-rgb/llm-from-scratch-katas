@@ -31,9 +31,10 @@ def find_project_root(explicit: str | None = None) -> Path:
     if explicit:
         candidates.append(Path(explicit).expanduser())
 
-    configured_home = os.environ.get("ML_KATAS_HOME")
-    if configured_home:
-        candidates.append(Path(configured_home).expanduser())
+    for variable in ("ADAPTIVE_ML_GYM_HOME", "ML_KATAS_HOME"):
+        configured_home = os.environ.get(variable)
+        if configured_home:
+            candidates.append(Path(configured_home).expanduser())
 
     current = Path.cwd().resolve()
     candidates.extend((current, *current.parents))
@@ -43,7 +44,7 @@ def find_project_root(explicit: str | None = None) -> Path:
     candidates.extend(
         (
             Path.home() / "ml-katas-trial",
-            Path.home() / "llm-from-scratch-katas_V1",
+            Path.home() / "Adaptive-ml-code-gym",
         )
     )
 
@@ -58,7 +59,8 @@ def find_project_root(explicit: str | None = None) -> Path:
 
     raise FileNotFoundError(
         "Could not find the Trial Edition course. Pass --root, set "
-        "ML_KATAS_HOME, or initialize a checkout with bootstrap_course.py."
+        "ADAPTIVE_ML_GYM_HOME (or ML_KATAS_HOME), or initialize a checkout "
+        "with bootstrap_course.py."
     )
 
 

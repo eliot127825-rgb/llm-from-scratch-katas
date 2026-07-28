@@ -1,10 +1,9 @@
 {
   "schema_version": 1,
-  "product": "Machine Learning Foundations: From-Scratch Katas",
+  "product": "Adaptive ML Code Gym",
   "edition": "trial",
   "display_name": "Trial Edition",
   "distribution": "public",
-  "repository": "eliot127825-rgb/llm-from-scratch-katas_V1",
-  "companion_repository": "eliot127825-rgb/llm-from-scratch-katas_V2",
+  "repository": "eliot127825-rgb/Adaptive-ml-code-gym",
   "kata_count": 19
 }

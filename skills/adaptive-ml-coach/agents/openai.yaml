@@ -1,0 +1,4 @@
+interface:
+  display_name: "Adaptive ML Coach (Trial)"
+  short_description: "Skill assessment and adaptive ML coding coach"
+  default_prompt: "Use $adaptive-ml-coach to assess my current level and start an appropriately difficult exercise."

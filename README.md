@@ -1,9 +1,9 @@
-# ML From-Scratch Katas
+# Adaptive ML Code Gym
 
 > 面向代码基础薄弱学习者的机器学习算法训练营：用小题、自动测试和自适应 AI
 > 教练，把“看懂公式”一步步变成“能够独立写出代码”。
 
-[![Validate and package](https://github.com/eliot127825-rgb/llm-from-scratch-katas_V1/actions/workflows/validate-plugin.yml/badge.svg)](https://github.com/eliot127825-rgb/llm-from-scratch-katas_V1/actions/workflows/validate-plugin.yml)
+[![Validate and package](https://github.com/eliot127825-rgb/Adaptive-ml-code-gym/actions/workflows/validate-plugin.yml/badge.svg)](https://github.com/eliot127825-rgb/Adaptive-ml-code-gym/actions/workflows/validate-plugin.yml)
 [![Trial Edition](https://img.shields.io/badge/edition-Trial-blue)](EDITIONS.md)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-3776AB)](ENVIRONMENT.md)
 [![Katas 19](https://img.shields.io/badge/katas-19-2EA44F)](CATALOG.md)
@@ -194,7 +194,7 @@ Skill 使用安全的单题测试运行器，不会因为不同 kata 中存在�
 
 ```text
 Use $skill-installer to install the skill from:
-https://github.com/eliot127825-rgb/llm-from-scratch-katas_V1/tree/main/skills/practice-ml-katas-trial
+https://github.com/eliot127825-rgb/Adaptive-ml-code-gym/tree/main/skills/adaptive-ml-coach
 ```
 
 安装完成后，新建一个对话。如果 Codex 没有发现新 Skill，请重启 Codex 后再新建
@@ -205,13 +205,13 @@ https://github.com/eliot127825-rgb/llm-from-scratch-katas_V1/tree/main/skills/pr
 在新对话中发送：
 
 ```text
-Use $practice-ml-katas-trial to assess my level and start my first exercise.
+Use $adaptive-ml-coach to assess my level and start my first exercise.
 ```
 
 如果你不想诊断，可以直接发送：
 
 ```text
-Use $practice-ml-katas-trial to skip the assessment, start me at Starter level,
+Use $adaptive-ml-coach to skip the assessment, start me at Starter level,
 and guide me through my first exercise.
 ```
 
@@ -227,8 +227,8 @@ and guide me through my first exercise.
 ### 1. 克隆公开试用版
 
 ```powershell
-git clone https://github.com/eliot127825-rgb/llm-from-scratch-katas_V1.git
-cd llm-from-scratch-katas_V1
+git clone https://github.com/eliot127825-rgb/Adaptive-ml-code-gym.git
+cd Adaptive-ml-code-gym
 ```
 
 ### 2. 创建环境并使用清华源安装依赖
@@ -276,43 +276,43 @@ katas/01_python_dsa/001_count_labels/implementation.py
 ### 不知道从哪开始
 
 ```text
-Use $practice-ml-katas-trial to assess me and recommend one suitable exercise.
+Use $adaptive-ml-coach to assess me and recommend one suitable exercise.
 ```
 
 ### 继续上次练习
 
 ```text
-Use $practice-ml-katas-trial to continue my current kata.
+Use $adaptive-ml-coach to continue my current kata.
 ```
 
 ### 测试当前代码
 
 ```text
-Use $practice-ml-katas-trial to test my current kata and explain only the first
+Use $adaptive-ml-coach to test my current kata and explain only the first
 useful failure.
 ```
 
 ### 我完全看不懂报错
 
 ```text
-Use $practice-ml-katas-trial to explain this error as if I only know basic
+Use $adaptive-ml-coach to explain this error as if I only know basic
 Python. Give me one next action, not the full answer.
 ```
 
 ### 我觉得题目太难或太简单
 
 ```text
-Use $practice-ml-katas-trial to choose an easier exercise.
+Use $adaptive-ml-coach to choose an easier exercise.
 ```
 
 ```text
-Use $practice-ml-katas-trial to give me a harder exercise with fewer hints.
+Use $adaptive-ml-coach to give me a harder exercise with fewer hints.
 ```
 
 ### 重新评估能力
 
 ```text
-Use $practice-ml-katas-trial to reassess my level.
+Use $adaptive-ml-coach to reassess my level.
 ```
 
 ## 版本规划
@@ -329,7 +329,7 @@ Use $practice-ml-katas-trial to reassess my level.
 ## 项目结构
 
 ```text
-llm-from-scratch-katas/
+Adaptive-ml-code-gym/
 ├── .codex-plugin/
 │   └── plugin.json              # Codex Plugin 清单
 ├── katas/                       # 19 道公开练习
@@ -340,7 +340,7 @@ llm-from-scratch-katas/
 │   ├── 05_transformer/
 │   └── 06_generation/
 ├── skills/
-│   └── practice-ml-katas-trial/ # 自适应 Codex 教练
+│   └── adaptive-ml-coach/       # 自适应 Codex 教练
 ├── scripts/
 │   ├── build_plugin.py          # 构建干净的 Plugin ZIP
 │   └── validate_repository.py   # 检查目录、题目和 Python 语法
@@ -401,7 +401,7 @@ python scripts/validate_repository.py
 
 ### 如何反馈问题？
 
-请在 [GitHub Issues](https://github.com/eliot127825-rgb/llm-from-scratch-katas_V1/issues)
+请在 [GitHub Issues](https://github.com/eliot127825-rgb/Adaptive-ml-code-gym/issues)
 中说明操作系统、Python 版本、kata 路径、执行命令和完整错误信息。请不要在 Issue
 中提交未发布版本内容、密钥或个人学习档案。
 
@@ -415,5 +415,5 @@ python scripts/validate_repository.py
 如果你第一次来到这里，最简单的开始方式只有一句话：
 
 ```text
-Use $practice-ml-katas-trial to assess my level and start my first exercise.
+Use $adaptive-ml-coach to assess my level and start my first exercise.
 ```

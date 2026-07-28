@@ -11,7 +11,7 @@ from pathlib import Path
 
 
 DEFAULT_SOURCE = (
-    "https://github.com/eliot127825-rgb/llm-from-scratch-katas_V1.git"
+    "https://github.com/eliot127825-rgb/Adaptive-ml-code-gym.git"
 )
 MARKERS = (
     "EDITION.json",
